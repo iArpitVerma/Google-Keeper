@@ -18,9 +18,9 @@ function App() {
     }
   }
 
-  function deleteNote(id) {
-    axios.post("https://keeper-api-azna.onrender.com/api/delete",id).then(res => setNotes(res.data))
-  }{id}
+  function deleteNote(title) {
+    axios.post("https://keeper-api-azna.onrender.com/api/delete",{title}).then(res => setNotes(res.data))
+  }{title}
 
   return (
     <div>
