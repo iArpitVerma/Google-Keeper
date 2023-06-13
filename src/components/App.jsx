@@ -5,21 +5,24 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 import axios from "axios";
 
+// Delete "https://keeper-api-azna.onrender.com"
+const backendServerURL = "https://keeper-api-azna.onrender.com" || "http://localhost:5000";
+
 function App() {
   const [notes, setNotes] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://keeper-api-azna.onrender.com/api/getAll").then(res=> setNotes(res.data));
+    axios.get(backendServerURL+"/api/getAll").then(res=> setNotes(res.data));
   },[])
 
   function addNote(newNote) {
     if(newNote.title || newNote.content){
-      axios.post("https://keeper-api-azna.onrender.com/api/addNew",newNote).then(res => setNotes(res.data))
+      axios.post(backendServerURL + "/api/addNew",newNote).then(res => setNotes(res.data))
     }
   }
 
   const deleteNote = (id) => {
-    axios.post("https://keeper-api-azna.onrender.com/api/delete",{id}).then(res => setNotes(res.data))
+    axios.post(backendServerURL+"/api/delete",{id}).then(res => setNotes(res.data))
   }
 
   return (
